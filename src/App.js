@@ -47,7 +47,7 @@ function App() {
       <Header/>
       <div className="d-flex justify-content-center flex-fill">
         <Data setSearch={setSearch} setConsult={setConsult} />
-        <Results/>
+        <Results result={result}/>
       </div>
     </div>
   );
