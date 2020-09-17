@@ -40,7 +40,7 @@ function App() {
 
       if(consult){
       
-        const appId = '2e2fe3eb83fbb700e42c8fda8e2794bd';
+        const appId = process.env.REACT_APP_API_KEY;
         const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${appId}`;
 
         const respuesta = await fetch(url);
