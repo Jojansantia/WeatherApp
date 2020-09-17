@@ -13,8 +13,24 @@ function App() {
       city: '',
       country: ''
     });
+  const [color, setColor] = useState('#58D68D')
 
   const { city, country } = search
+
+  const changeColor = (temperature) => {
+console.log(typeof(temperature), temperature);
+
+    if(temperature <= 10){
+console.log("entre1");
+      setColor('#19BFCB')
+    }else if( temperature > 10 && temperature <= 25){
+console.log("entre2");
+      setColor('#58D68D')
+    }else if(temperature > 25){
+console.log("entre");
+      setColor('#FA8072')
+    }
+  }
 
   useEffect(() => {
     const consultAPI = async () => {
@@ -29,6 +45,8 @@ function App() {
 
         setResult(res)
         setConsult(false)
+        let temperature = parseInt( res.main.temp - 273.15, 10 )
+        changeColor(temperature)
 
         // if(resultado.cod === "404") {
         //     guardarError(true);
@@ -43,11 +61,11 @@ function App() {
 
 
   return (
-    <div className="container border text-center mt-5 p-2 font-weight-bold text-monospace text-uppercase">
-      <Header/>
+    <div className="container border mt-5 p-2 font-weight-bold text-white shadow rounded-lg " style={{background: color}}>
+        <Header/>
       <div className="d-flex justify-content-center flex-fill">
         <Data setSearch={setSearch} setConsult={setConsult} />
-        <Results result={result}/>
+        <Results result={result} setColor={setColor}/>
       </div>
     </div>
   );

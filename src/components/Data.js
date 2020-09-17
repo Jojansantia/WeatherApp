@@ -17,11 +17,11 @@ const Data = ({setSearch, setConsult}) => {
 
   return ( 
     <>
-      <div className="card p-2 w-full col-md-6" >
+      <div className="p-2 w-full col-md-6 border-right mt-2" >
         <form onSubmit={handleSumit}>
 
-          <div className="form-group">
-            <label htmlFor="city">City</label>
+          <div className="form-group d-flex my-4">
+            <label className="my-auto mr-2" htmlFor="city">City</label>
             <input 
               type="text" className="form-control" id="city" 
               placeholder="Enter a city"
@@ -29,8 +29,8 @@ const Data = ({setSearch, setConsult}) => {
             />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="country">Country</label>
+          <div className="form-group d-flex my-4">
+            <label className="my-auto mr-2" htmlFor="country">Country</label>
             <select 
               onChange={(e) => setCountry(e.target.value)} 
               className="form-control " id="country"
@@ -46,7 +46,9 @@ const Data = ({setSearch, setConsult}) => {
             </select>
           </div>
 
-          <button type="submit" className="btn btn-primary col-md-5">Search</button>
+          <div className="text-center my-4">
+            <button type="submit" className="btn btn-secondary col-md-5 ">Search</button>
+          </div>
 
         </form>
       </div>
