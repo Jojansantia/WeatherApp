@@ -1,12 +1,26 @@
 import React, { useState } from 'react';
 
-const Data = ({setSearch, setConsult}) => {
+const Data = ({setSearch, setConsult, Alerta}) => {
 
   const [city, setCity] = useState('')
   const [country, setCountry] = useState('')
 
   const handleSumit = (e) =>  {
     e.preventDefault();
+
+    if(city.trim() === '' && country.trim() === ''){
+      Alerta('All fields are required.')
+      return
+    }
+    if(city.trim() === '' ){
+      Alerta('City is required.')
+      return
+    }
+    if(country.trim() === '' ){
+      Alerta('Country is required.')
+      return
+    }
+
     let info = {
       city,
       country

@@ -7,9 +7,7 @@ const Results = ({result, setColor}) => {
   return ( 
     <>
       <div className=" p-2 col-md-6 text-center mt-2" >
-        {!name ?
-          <h3>-- No results found --</h3>
-        :
+        {name &&
           <div className="black-text">
             <h2>El clima de {name} es </h2>
             <p className="temperatura">

@@ -8,6 +8,7 @@ import Message from './components/Message';
 function App() {
 
   const [consult, setConsult] = useState(false);
+  const [msg, setMsg] = useState('')
   const [result, setResult] = useState({});
   const [search, setSearch] = useState({ 
       city: '',
@@ -18,18 +19,20 @@ function App() {
   const { city, country } = search
 
   const changeColor = (temperature) => {
-console.log(typeof(temperature), temperature);
-
     if(temperature <= 10){
-console.log("entre1");
       setColor('#19BFCB')
     }else if( temperature > 10 && temperature <= 25){
-console.log("entre2");
       setColor('#58D68D')
     }else if(temperature > 25){
-console.log("entre");
       setColor('#FA8072')
     }
+  }
+
+  const Alerta = (message) => {
+    setMsg(message);
+    setTimeout(() => {
+      setMsg('');
+    }, 3000);
   }
 
   useEffect(() => {
@@ -42,17 +45,18 @@ console.log("entre");
 
         const respuesta = await fetch(url);
         const res = await respuesta.json();
+        setConsult(false)
+
+        if(respuesta.status === 404) {
+          Alerta('No results found')
+          return
+        } else {
+            setMsg('');
+        }
 
         setResult(res)
-        setConsult(false)
         let temperature = parseInt( res.main.temp - 273.15, 10 )
         changeColor(temperature)
-
-        // if(resultado.cod === "404") {
-        //     guardarError(true);
-        // } else {
-        //     guardarError(false);
-        // }
       }
     }
     consultAPI();
@@ -61,12 +65,15 @@ console.log("entre");
 
 
   return (
-    <div className="container border mt-5 p-2 font-weight-bold text-white shadow rounded-lg " style={{background: color}}>
-        <Header/>
-      <div className="d-flex justify-content-center flex-fill">
-        <Data setSearch={setSearch} setConsult={setConsult} />
-        <Results result={result} setColor={setColor}/>
-      </div>
+    <div id="fondo" className="pt-5">
+        <div className="container border p-2 font-weight-bold text-white shadow rounded-lg " style={{background: color}}>
+            <Header/>
+          <div className="d-flex justify-content-center flex-fill">
+            <Data setSearch={setSearch} setConsult={setConsult} Alerta={Alerta} />
+            <Results result={result} setColor={setColor}/>
+          </div>
+          <Message msg={msg} />
+        </div>
     </div>
   );
 }
