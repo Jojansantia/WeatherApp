@@ -31,7 +31,7 @@ const Data = ({setSearch, setConsult, Alerta}) => {
 
   return ( 
     <>
-      <div className="p-2 w-full col-md-6 border-right mt-2" >
+      <div className="p-2 w-full col-md-6 border-right border-left mt-2" >
         <form onSubmit={handleSumit}>
 
           <div className="form-group d-flex my-4">
@@ -61,7 +61,7 @@ const Data = ({setSearch, setConsult, Alerta}) => {
           </div>
 
           <div className="text-center my-4">
-            <button type="submit" className="btn btn-secondary col-md-5 ">Search</button>
+            <button type="submit" className="btn btn-secondary col-5 ">Search</button>
           </div>
 
         </form>

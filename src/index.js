@@ -5,7 +5,9 @@ import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
+    <div id="fondo" className="pt-5">
     <App />
+</div>
   </React.StrictMode>,
   document.getElementById('root')
 );

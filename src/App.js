@@ -49,6 +49,8 @@ function App() {
 
         if(respuesta.status === 404) {
           Alerta('No results found')
+          setResult({})
+          setColor('#58D68D')
           return
         } else {
             setMsg('');
@@ -63,17 +65,22 @@ function App() {
     // eslint-disable-next-line
   },[consult]);
 
-
   return (
-    <div id="fondo" className="pt-5">
-        <div className="container border p-2 font-weight-bold text-white shadow rounded-lg " style={{background: color}}>
-            <Header/>
-          <div className="d-flex justify-content-center flex-fill">
-            <Data setSearch={setSearch} setConsult={setConsult} Alerta={Alerta} />
-            <Results result={result} setColor={setColor}/>
-          </div>
-          <Message msg={msg} />
-        </div>
+    <div className="container border p-2 font-weight-bold text-white shadow rounded-lg " style={{background: color}}>
+      <Header/>
+      <div className="d-flex justify-content-center flex-wrap">
+        <Data 
+          setSearch={setSearch} 
+          setConsult={setConsult} 
+          Alerta={Alerta}
+        />
+        {result.name &&
+          <Results 
+            result={result} 
+          />
+        }
+      </div>
+      <Message msg={msg} />
     </div>
   );
 }
